@@ -22,17 +22,17 @@ public class AuthService {
         return webClient.post()
                 .uri("https://test.api.amadeus.com/v1/security/oauth2/token")
                 .header("Content-Type", "application/x-www-form-urlencoded")
-                .bodyValue("grant_type=client_credentials&client_id=" + clientId + "&" + "client_secret=" + clientSecret)
+                .bodyValue("grant_type=client_credentials&client_id=" + clientId + "&client_secret=" + clientSecret)
                 .retrieve()
                 .bodyToMono(TokenResponse.class)
-                .map(TokenResponse::getAccessToken);
+                .map(TokenResponse::getAccess_token);
     }
 
     @Setter
     @Getter
     private static class TokenResponse {
 
-        private String accessToken;
+        private String access_token;
 
     }
 }
