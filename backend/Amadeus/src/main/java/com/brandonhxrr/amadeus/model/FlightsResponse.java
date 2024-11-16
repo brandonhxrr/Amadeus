@@ -23,7 +23,7 @@ public class FlightsResponse {
         private int numberOfBookableSeats;
         private List<Itinerary> itineraries;
         private Price price;
-        private List<TravelerPricing> travelerPrincing;
+        private List<TravelerPricing> travelerPricing;
 
         @Builder
         @NoArgsConstructor

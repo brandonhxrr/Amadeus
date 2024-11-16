@@ -47,6 +47,7 @@ public class FlightService {
                                 .queryParam("adults", adults)
                                 .queryParam("currencyCode", currencyCode)
                                 .queryParam("nonStop", nonStop)
+                                .queryParam("max", 10)
                                 .build())
                         .header("Authorization", "Bearer " + token)
                         .retrieve()
