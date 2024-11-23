@@ -1,5 +1,4 @@
-import { ArrowRightIcon, ChevronDownIcon } from "@heroicons/react/16/solid";
-import { ArrowDownIcon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon } from "@heroicons/react/16/solid";
 import { FlightSegment } from "./FlightSegment";
 import { PricePerTraveler } from "./PricePerTraveler";
 
