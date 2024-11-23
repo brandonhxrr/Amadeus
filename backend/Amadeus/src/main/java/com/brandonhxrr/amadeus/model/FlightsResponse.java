@@ -1,5 +1,6 @@
 package com.brandonhxrr.amadeus.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public class FlightsResponse {
         private int numberOfBookableSeats;
         private List<Itinerary> itineraries;
         private Price price;
-        private List<TravelerPricing> travelerPricing;
+        private List<TravelerPricings> travelerPricings;
 
         @Builder
         @NoArgsConstructor
@@ -93,21 +94,32 @@ public class FlightsResponse {
         @NoArgsConstructor
         @AllArgsConstructor
         @Data
-        public static class TravelerPricing {
+        public static class TravelerPricings {
             private String travelerId;
             private String fareOption;
             private String travelerType;
-            private Price price;
-            private List<FareDetailBySegment> fareDetailBySegment;
+            private TravelerPrice price;
+            private List<FareDetailsBySegment> fareDetailsBySegment;
 
             @Builder
             @NoArgsConstructor
             @AllArgsConstructor
             @Data
-            public static class FareDetailBySegment {
+            public static class TravelerPrice {
+                private String currency;
+                private String total;
+                private String base;
+            }
+
+            @Builder
+            @NoArgsConstructor
+            @AllArgsConstructor
+            @Data
+            public static class FareDetailsBySegment {
                 private String segmentId;
                 private String cabin;
                 private String fareBasis;
+                @JsonProperty("class")
                 private String travelClass;
                 private IncludedCheckedBags includedCheckedBags;
 
