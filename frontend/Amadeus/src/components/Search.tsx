@@ -50,6 +50,7 @@ const Search = () => {
             returnDate: formData.get("returnDate") as string,
             adults: parseInt(formData.get("adults") as string, 10),
             currencyCode: formData.get("currencyCode") as string,
+            sortBy: "",
             nonStop:  formData.get("nonStop") === "on" as string
         }
 

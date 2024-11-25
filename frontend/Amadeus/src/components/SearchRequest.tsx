@@ -5,5 +5,6 @@ export interface SearchRequest {
     returnDate: string,
     adults: number,
     currencyCode: string,
+    sortBy: string,
     nonStop: boolean,
 }
