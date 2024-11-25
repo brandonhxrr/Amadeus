@@ -1,9 +1,17 @@
-const FlightSegment = () => {
+import { getParsedDate, getParsedTime, parseISODurationToTime } from "./DateUtils";
+import { FareDetailsBySegment, Segment } from "./SearchResponse";
+
+interface FlightSegmentProps {
+    segment: Segment;
+    fareDetailsBySegment: FareDetailsBySegment;
+};
+
+const FlightSegment: React.FC<FlightSegmentProps> = ({segment, fareDetailsBySegment}) => {
     return (
         <div className="w-full border-dashed border-b-2 py-5">
             <div className="flex justify-between font-bold font-mono">
-                <p>Flight No. 234N</p>
-                <p> Aircraft 534</p>
+                <p>Flight No. {segment.number}</p>
+                <p>Aircraft {segment.aircraft.code}</p>
             </div>
 
             <div className="flex w-full items-center h-56 text-center divide-gray-700">
@@ -16,8 +24,10 @@ const FlightSegment = () => {
                         <p>Departure</p>
                     </div>
 
-                    <p className="font-mono font-bold text-3xl my-5">7:30 AM</p>
-                    <p>Airport: NLU</p>
+                    <p className="font-mono font-bold text-3xl mt-7 mb-2">{getParsedTime(segment.departure.at as string)}</p>
+                    <p className="font-mono font-bold text-sm my-1">{getParsedDate(segment.departure.at as string)}</p>
+
+                    <p>Airport: {segment.departure.iataCode}</p>
                 </div>
 
                 <div className="w-1/5 h-full flex flex-col justify-center">
@@ -25,11 +35,11 @@ const FlightSegment = () => {
                 </div>
 
                 <div className="w-1/5 h-full flex flex-col justify-center">
-                    <p className="font-mono font-bold uppercase">Volaris</p>
+                    <p className="font-mono font-bold uppercase">{segment.carrierCode}</p>
                     <div className="flex justify-center py-5">
-                        <p className="font-mono font-bold uppercase rounded-full bg-gradient-to-r from-blue-600 to-sky-300 text-white w-fit mx-auto px-5">2h 45m</p>
+                        <p className="font-mono font-bold uppercase rounded-full bg-gradient-to-r from-blue-600 to-sky-300 text-white w-fit mx-auto px-5"> { parseISODurationToTime(segment.duration) }</p>
                     </div>
-                    <p className="font-mono font-bold uppercase">Volaris</p>
+                    <p className="font-mono font-bold uppercase"></p>
                 </div>
 
                 <div className="w-1/5 h-full flex flex-col justify-center">
@@ -45,8 +55,10 @@ const FlightSegment = () => {
                         <p>Arrival</p>
                     </div>
 
-                    <p className="font-mono font-bold text-3xl my-5">7:30 AM</p>
-                    <p>Airport: NLU</p>
+                    <p className="font-mono font-bold text-3xl mt-7 mb-2">{getParsedTime(segment.arrival.at as string)}</p>
+                    <p className="font-mono font-bold text-sm my-1">{getParsedDate(segment.arrival.at as string)}</p>
+
+                    <p>Airport: {segment.arrival.iataCode}</p>
                 </div>
 
             </div>
@@ -54,11 +66,11 @@ const FlightSegment = () => {
             <div className="flex justify-between font-mono">
                 <div>
                     <p className="uppercase font-bold">Cabin</p>
-                    <p>Flight No. 234N</p>
+                    <p>{fareDetailsBySegment.cabin}</p>
                 </div>
                 <div>
                     <p className="uppercase font-bold">Class</p>
-                    <p>E</p>
+                    <p>{fareDetailsBySegment.class}</p>
                 </div>
             </div>
         </div>

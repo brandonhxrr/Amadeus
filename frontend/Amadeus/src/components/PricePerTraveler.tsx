@@ -1,9 +1,15 @@
-const PricePerTraveler = () => {
+import { TravelerPricing } from "./SearchResponse";
+
+interface PricePerTravelerProps {
+    travelerPricing: TravelerPricing;
+}
+
+const PricePerTraveler: React.FC<PricePerTravelerProps> = ({travelerPricing}) => {
     return (
         <div className="w-full text-right mx-5">
-            <p>1 Standard Adult </p>
-            <p className="text-xl ">Base: <span className="text-green-600">$1,000 MXN</span></p>
-            <p className="text-xl mb-4">Fees: <span className="text-green-600">$200 MXN</span></p>
+            <p>{travelerPricing.travelerId}.- {travelerPricing.fareOption} {travelerPricing.travelerType} </p>
+            <p className="text-xl ">Base: <span className="text-green-600">${travelerPricing.price.base} {travelerPricing.price.currency}</span></p>
+            <p className="text-xl mb-4">Total: <span className="text-green-600">${travelerPricing.price.total} {travelerPricing.price.currency}</span></p>
         </div>
     );
 }

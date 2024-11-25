@@ -24,7 +24,7 @@ public class FlightsResponse {
         private int numberOfBookableSeats;
         private List<Itinerary> itineraries;
         private Price price;
-        private List<TravelerPricings> travelerPricings;
+        private List<TravelerPricing> travelerPricings;
 
         @Builder
         @NoArgsConstructor
@@ -94,7 +94,7 @@ public class FlightsResponse {
         @NoArgsConstructor
         @AllArgsConstructor
         @Data
-        public static class TravelerPricings {
+        public static class TravelerPricing {
             private String travelerId;
             private String fareOption;
             private String travelerType;

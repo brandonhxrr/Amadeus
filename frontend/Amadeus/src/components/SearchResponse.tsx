@@ -12,12 +12,12 @@ export interface FlightsResponse {
     travelerPricings: TravelerPricing[];
   }
   
-  interface Itinerary {
+  export interface Itinerary {
     duration: string;
     segments: Segment[];
   }
   
-  interface Segment {
+  export interface Segment {
     id: string;
     duration: string;
     numberOfStops: number;
@@ -38,7 +38,7 @@ export interface FlightsResponse {
     code: string;
   }
   
-  interface Price {
+  export interface Price {
     currency: string;
     total: string;
     base: string;
@@ -46,12 +46,12 @@ export interface FlightsResponse {
     grandTotal: string;
   }
   
-  interface Fee {
+  export interface Fee {
     amount: string;
     type: string;
   }
   
-  interface TravelerPricing {
+  export interface TravelerPricing {
     travelerId: string;
     fareOption: string;
     travelerType: string;
@@ -59,16 +59,17 @@ export interface FlightsResponse {
     fareDetailsBySegment: FareDetailsBySegment[];
   }
   
-  interface TravelerPrice {
+  export interface TravelerPrice {
     currency: string;
     total: string;
     base: string;
   }
   
-  interface FareDetailsBySegment {
+  export interface FareDetailsBySegment {
     segmentId: string;
     cabin: string;
     fareBasis: string;
+    class: string;
     travelClass: string;
     includedCheckedBags: IncludedCheckedBags;
   }
