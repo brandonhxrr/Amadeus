@@ -1,5 +1,11 @@
 export interface FlightsResponse {
     data: FlightOffer[];
+    dictionaries: Dictionaries;
+  }
+
+  export interface Dictionaries {
+    carriers: {[key: string]: string};
+    aircraft: {[key: string]: string};
   }
   
   export interface FlightOffer {

@@ -1,17 +1,18 @@
 import { getParsedDate, getParsedTime, parseISODurationToTime } from "./DateUtils";
-import { FareDetailsBySegment, Segment } from "./SearchResponse";
+import { Dictionaries, FareDetailsBySegment, Segment } from "./SearchResponse";
 
 interface FlightSegmentProps {
     segment: Segment;
     fareDetailsBySegment: FareDetailsBySegment;
+    dictionaries: Dictionaries;
 };
 
-const FlightSegment: React.FC<FlightSegmentProps> = ({segment, fareDetailsBySegment}) => {
+const FlightSegment: React.FC<FlightSegmentProps> = ({segment, fareDetailsBySegment, dictionaries}) => {
     return (
         <div className="w-full border-dashed border-b-2 py-5">
             <div className="flex justify-between font-bold font-mono">
                 <p>Flight No. {segment.number}</p>
-                <p>Aircraft {segment.aircraft.code}</p>
+                <p>{dictionaries.aircraft[segment.aircraft.code]}</p>
             </div>
 
             <div className="flex w-full items-center h-56 text-center divide-gray-700">
@@ -35,7 +36,7 @@ const FlightSegment: React.FC<FlightSegmentProps> = ({segment, fareDetailsBySegm
                 </div>
 
                 <div className="w-1/5 h-full flex flex-col justify-center">
-                    <p className="font-mono font-bold uppercase">{segment.carrierCode}</p>
+                    <p className="font-mono font-bold uppercase">{dictionaries.carriers[segment.carrierCode]}</p>
                     <div className="flex justify-center py-5">
                         <p className="font-mono font-bold uppercase rounded-full bg-gradient-to-r from-blue-600 to-sky-300 text-white w-fit mx-auto px-5"> { parseISODurationToTime(segment.duration) }</p>
                     </div>
