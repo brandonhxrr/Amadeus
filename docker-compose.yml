@@ -1,0 +1,15 @@
+version: "1.0"
+services:
+  backend:
+    build:
+      context: ./backend/Amadeus
+      dockerfile: Dockerfile
+    ports:
+      - "9090:9090"
+
+  frontend:
+    build:
+      context: ./frontend/Amadeus
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
