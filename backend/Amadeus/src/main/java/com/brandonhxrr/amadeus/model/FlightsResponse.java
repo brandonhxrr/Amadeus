@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Builder
 @NoArgsConstructor
@@ -11,6 +12,16 @@ import java.util.List;
 @Data
 public class FlightsResponse {
     private ArrayList<FlightOffer> data;
+    private Dictionaries dictionaries;
+
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Data
+    public static class Dictionaries {
+        private Map<String, String> carriers;
+        private Map<String, String> aircraft;
+    }
 
     @Builder
     @NoArgsConstructor
