@@ -30,7 +30,7 @@ public class FlightController {
     public ResponseEntity<FlightsResponse> searchFlights(@RequestParam String originLocationCode,
                                                          @RequestParam String destinationLocationCode,
                                                          @RequestParam String departureDate,
-                                                         @RequestParam String returnDate,
+                                                         @RequestParam(required = false, defaultValue = "") String returnDate,
                                                          @RequestParam int adults,
                                                          @RequestParam String currencyCode,
                                                          @RequestParam Boolean nonStop
