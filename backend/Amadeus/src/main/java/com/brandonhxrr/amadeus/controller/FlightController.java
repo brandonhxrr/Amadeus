@@ -33,9 +33,10 @@ public class FlightController {
                                                          @RequestParam(required = false, defaultValue = "") String returnDate,
                                                          @RequestParam int adults,
                                                          @RequestParam String currencyCode,
+                                                         @RequestParam(required = false, defaultValue = "") String sortBy,
                                                          @RequestParam Boolean nonStop
     ) {
 
-        return new ResponseEntity<>(flightService.searchFlights(originLocationCode, destinationLocationCode, departureDate, returnDate, adults, currencyCode, nonStop).block(), HttpStatus.OK);
+        return new ResponseEntity<>(flightService.searchFlights(originLocationCode, destinationLocationCode, departureDate, returnDate, adults, currencyCode, sortBy, nonStop).block(), HttpStatus.OK);
     }
 }
