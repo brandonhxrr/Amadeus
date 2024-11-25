@@ -12,6 +12,24 @@ const Search = () => {
     const [originIataCode, setOriginIataCode] = useState("");
     const [destinationIataCode, setDestinationIataCode] = useState("");
 
+    const[departureDate, setDepartureDate] = useState("");
+    const[returnDate, setReturnDate] = useState("");
+
+    const [passengersNumber, setPassengersNumber] = useState("");
+
+    const getTodayDate = (): string => {
+        const today = new Date();
+        console.log(today);
+        const year = today.getFullYear();
+        const month = today.getMonth() + 1;
+        const day = today.getDate();
+        
+        return `${year}-${month}-${day}`;
+    }
+
+    const today = getTodayDate();
+    console.log(today);
+
     const handleOriginSelection = (iataCode: string) => {
         setOriginIataCode(iataCode);
     }
@@ -66,11 +84,27 @@ const Search = () => {
                         <div className="flex">
                             <div className="mb-5 w-1/2 mr-12">
                                 <label htmlFor="departureDate" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Departure</label>
-                                <input type="date" name="departureDate" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 appearance-none" placeholder="" required />
+                                <input
+                                type="date"
+                                name="departureDate"
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 appearance-none"
+                                placeholder=""
+                                value={departureDate}
+                                onChange={(e) => setDepartureDate(e.target.value)}
+                                min={today}
+                                required />
                             </div>
                             <div className="mb-5 w-1/2 ml-12">
                                 <label htmlFor="returnDate" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Return</label>
-                                <input type="date" name="returnDate" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 appearance-none" placeholder="Destination" required />
+                                <input
+                                type="date"
+                                name="returnDate"
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 appearance-none"
+                                placeholder="Destination"
+                                value={returnDate}
+                                onChange={(e) => setReturnDate(e.target.value)}
+                                min={departureDate || today}
+                                required />
                             </div>
                         </div>
 
@@ -90,12 +124,12 @@ const Search = () => {
 
                             </div>
                             <div className="mb-5 w-1/2 ml-11">
-                                <label htmlFor="passengers" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Passengers</label>
+                                <label htmlFor="adults" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Passengers</label>
                                 <div className="relative">
                                     <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                                         <UsersIcon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
                                     </div>
-                                    <input type="number" id="passengers" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 appearance-none" placeholder="1" defaultValue={1} min="1" required />
+                                    <input type="number" name="adults" value={passengersNumber} onChange={(e) => setPassengersNumber(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 appearance-none" placeholder="1" defaultValue={1} min="1" required />
                                 </div>
                             </div>
                         </div>
@@ -103,7 +137,7 @@ const Search = () => {
                         <div className="flex w-full mb-5 place-content-between items-center">
                             <div className="flex h-5 items-center">
                                 <label htmlFor="nonStop" className="ms-2 me-2 text-sm font-medium text-gray-900 dark:text-gray-300">Non-stop</label>
-                                <input name="nonStop" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" />
+                                <input name="nonStop" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" />
                             </div>
 
                             <button type="submit" className="text-white flex items-center bg-gradient-to-r from-blue-600 to-sky-300 border-none hover:border-blue-50 focus:ring-4 focus:outline-none focus:transparent font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
