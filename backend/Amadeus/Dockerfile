@@ -1,10 +1,10 @@
-FROM eclipse-temurin:17-jdk-alpine
+FROM openjdk:22-jdk-slim
 
 WORKDIR /app
 
-COPY . .
+COPY build/libs/amadeus-0.0.1-SNAPSHOT.jar amadeus.jar
 
 EXPOSE 9090
 
-CMD ["./gradlew", "bootRun"]
+CMD ["java", "-jar", "amadeus.jar"]
 
